@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pentagramming</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="scanline" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">&#123;IF&#8594;THEN&#125;</span>
+    <div>
+      <p class="brand-title">Sistem Rekomendasi Film dan Buku Berbasis Rule-Based Reasoning</p>
+      <p class="brand-sub">Kelompok Pentagramming &middot; IK24ABC</p>
+    </div>
+  </div>
+  <div class="mode-tag">SYMBOLIC AI &middot; FORWARD CHAINING</div>
+</header>
+
+<main class="layout">
+
+  <!-- ============ FACT INPUT PANEL ============ -->
+  <section class="panel panel-facts">
+    <h2 class="panel-title"><span class="tag">01</span> Fact Base &mdash; Preferensi Anda</h2>
+    <form id="fact-form">
+      <div class="field">
+        <label for="tipe_media">Tipe media</label>
+        <div class="segmented" id="tipe_media_toggle">
+          <button type="button" class="seg-btn active" data-value="film">Film</button>
+          <button type="button" class="seg-btn" data-value="buku">Buku</button>
+        </div>
+        <input type="hidden" id="tipe_media" name="tipe_media" value="film">
+      </div>
+
+      <div class="field">
+        <label for="genre">Genre</label>
+        <select id="genre" name="genre">
+          <option value="">Pilih Genre</option>
+          {% for g in genres %}
+          <option value="{{ g }}">{{ g|capitalize }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="mood">Mood saat ini</label>
+        <select id="mood" name="mood">
+          <option value="">Pilih Mood</option>
+          {% for m in moods %}
+          <option value="{{ m }}">{{ m|capitalize }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="field field-row">
+        <div>
+          <label for="durasi"><span id="durasi_label">Durasi (menit)</span></label>
+          <input type="number" id="durasi" name="durasi" placeholder="mis. 100" min="1">
+        </div>
+        <div>
+          <label for="rating_min">Rating minimum</label>
+          <input type="number" id="rating_min" name="rating_min" placeholder="mis. 7.5" min="0" max="10" step="0.1">
+        </div>
+      </div>
+
+      <div class="field field-row">
+        <div>
+          <label for="era">Era</label>
+          <select id="era" name="era">
+            <option value="">Bebas</option>
+            {% for e in eras %}
+            <option value="{{ e }}">{{ e }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div>
+          <label for="bahasa">Bahasa</label>
+          <select id="bahasa" name="bahasa">
+            <option value="">Bebas</option>
+            <option value="indonesia">Indonesia</option>
+            <option value="inggris">Inggris</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="run-btn">
+        <span>Jalankan Inferensi</span>
+        <span class="run-btn-icon">&#8594;</span>
+      </button>
+    </form>
+  </section>
+
+  <!-- ============ REASONING TRACE PANEL ============ -->
+  <section class="panel panel-trace">
+    <h2 class="panel-title"><span class="tag">02</span> Reasoning Trace - Conflict Set</h2>
+    <p class="panel-hint">Rule menyala jika &ge; 2 kondisi cocok dengan Fact Base. Diurutkan oleh confidence &times; specificity.</p>
+    <div id="trace-list" class="trace-list">
+      <p class="empty-state">Belum ada rule yang dievaluasi. Isi preferensi lalu jalankan mesin inferensi.</p>
+    </div>
+  </section>
+
+  <!-- ============ OUTPUT PANEL ============ -->
+  <section class="panel panel-output">
+    <h2 class="panel-title"><span class="tag">03</span> Output - Rekomendasi</h2>
+    <div id="output-list" class="output-list">
+      <p class="empty-state">Rekomendasi &amp; penjelasan logisnya akan tampil di sini.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>Sistem Rekomendasi Film & Buku Berbasis Rule-Based Reasoning.</p>
+  <p>Identitas Kelompok Pentagramming (IK24ABC)</p>
+  <p>241011053 Muh. Azwar. R – (IK24B)</p>
+  <p>241011015 Gad – (IK24C)</p>
+  <p>241011078 Elisa Steven Tandilo – (IK24B)</p>
+  <p>241011096 Jeremia Anderson Sipayung – (IK24A)</p>
+  <p>241011098 Yosia Mahendra S – (IK24B)</p>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
