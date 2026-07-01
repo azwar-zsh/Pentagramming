@@ -27,20 +27,3 @@ pip install flask
 python app.py
 ```
 Lalu buka **http://127.0.0.1:5000** di browser.
-
-## Alur Sistem (sesuai Bagian 6 Proposal)
-1. **Input** — pengguna mengisi tipe media, genre, mood, durasi/halaman,
-   rating minimum, era, dan bahasa lewat form web.
-2. **Fact Extraction** (`engine/facts.py`) — input divalidasi & dinormalisasi
-   menjadi Fact Base, termasuk kategori durasi otomatis (pendek/sedang/panjang).
-3. **Rule Matching + Forward Chaining** (`engine/inference.py`) — setiap rule
-   di Rule Base dicek terhadap Fact Base. Rule **aktif** (masuk Conflict Set)
-   bila minimal 2 kondisinya cocok (soft constraint).
-4. **Conflict Resolution** — Conflict Set diurutkan berdasarkan
-   `skor = confidence × jumlah kondisi yang cocok`.
-5. **Output Generation** — kandidat media disaring dengan **hard constraint**
-   (tipe media & bahasa wajib cocok, rating minimum bila diisi), lalu diberi
-   skor berdasarkan rule-rule yang aktif dan diambil maksimal 3 teratas,
-   masing-masing dengan penjelasan logis seperti:
-   > "Direkomendasikan karena memenuhi R2 & R19: mood tegang + genre thriller
-   > + durasi sedang; mood penasaran + thriller + durasi sedang."
