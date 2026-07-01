@@ -1,9 +1,14 @@
 # Sistem Rekomendasi Film & Buku — Rule-Based Reasoning
 Kelompok **Pentagramming (IK24ABC)**
+241011053 - Muh. Azwar. R – (IK24B)
+241011015 - Gad – (IK24C)
+241011078 - Elisa Steven Tandilo – (IK24B)
+241011096 - Jeremia Anderson Sipayung – (IK24A)
+241011098 - Yosia Mahendra S – (IK24B)
 
 ## Struktur Proyek
 ```
-proposalai/
+pentagramming/
 ├── app.py                 # Backend Flask (routing + API)
 ├── engine/
 │   ├── facts.py            # Fact Extraction: input pengguna -> Fact Base
