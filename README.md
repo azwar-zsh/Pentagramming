@@ -1,5 +1,5 @@
 # Sistem Rekomendasi Film & Buku — Rule-Based Reasoning
-Kelompok **Pentagramming (IK24ABC)**
+Kelompok **Pentagramming (IK24ABC)** </br>
 241011053 - Muh. Azwar. R – (IK24B) </br>
 241011015 - Gad – (IK24C) </br>
 241011078 - Elisa Steven Tandilo – (IK24B) </br>
